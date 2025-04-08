@@ -1,6 +1,6 @@
 [client]
 user=root
-password=root
-host=127.0.0.1
-database=test
+password=rootroot
+host=localhost
+database=meteo
 raise_on_warnings=True
