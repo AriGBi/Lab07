@@ -25,7 +25,7 @@ class MeteoDao():
         return result
 
     @staticmethod
-    def get_all_situazioni_ricorsione(mese):
+    def get_all_situazioni_meta_mese(mese):
         cnx = DBConnect.get_connection()
         result = []
         if cnx is None:
@@ -34,9 +34,9 @@ class MeteoDao():
             cursor = cnx.cursor(dictionary=True)
             query = """SELECT s.Localita, s.Data, s.Umidita
                                 FROM situazione s 
-                                where month(s.Data)=%s
+                                where month(s.Data)=%s and day(s.Data)<=15 
                                 ORDER BY s.Data ASC"""
-            cursor.execute(query,(mese, ))
+            cursor.execute(query,(mese,))
             for row in cursor:
                 result.append(Situazione(row["Localita"],
                                          row["Data"],
